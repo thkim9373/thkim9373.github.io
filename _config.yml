@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Taehoon Kim"
   avatar           : "/assets/images/profile_photo.jpeg"  # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "WATCHA.INC\nAndroid Developer"
+  bio              : "Android Developer<br>WATCHA.INC"
   location         : "Seoul, South Korea"
   email            :
   links:
