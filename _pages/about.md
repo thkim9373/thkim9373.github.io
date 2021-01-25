@@ -1,13 +1,11 @@
 ---
-title: "이 블로그 설명서"
+title: "About"
 permalink: /about/
 layout: single
 ---
 
-## devinlife.github.io 블로그
+## Hoony 의 안드로이드 테크 블로그
 
-이 블로그는 GitHub Pages 블로그 서비스인 github.io를 같이 만들어보는 샘플 블로그이다.
-
-진짜 블로그인 <https://devinlife.com>을 방문해보자.
-이 곳에서 이 샘플 블로그를 같이 만들어보는 GitHub Pages 블로그 따라하기 시리즈의
-모든 글을 볼 수 있다.
+여태껏 봐온 것들을 갈무리하고, 공유해보고자 블로그를 시작하게 됐다. 
+비록 미약한 시작이지만 같이 개발을 해나가는 사람들에게 조금이나마 도움이 됐으면 좋겠다. 
+다들 화이팅!! 
