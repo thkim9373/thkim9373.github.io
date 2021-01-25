@@ -1,5 +1,5 @@
 ---
-title: "윤동주 작품집"
+title: ""
 permalink: /categories/android/ 
 layout: category
 author_profile: true
