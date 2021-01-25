@@ -2,7 +2,7 @@
 title : "MVVM 개요"
 excerpt: "MVVM 에 대하여 알아보자"
 
-categoies :
+categories :
   - Android 
 tags : 
   - MVVM 
