@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "안드로이드"
 permalink: /categories/android/ 
 layout: category
 author_profile: true
