@@ -43,6 +43,4 @@ View 에서 발생하는 액션에 따라 비즈니스 로직을 실행하여 Mo
 
 로컬 데이터베이스나 네트워크 등의 데이터를 가지고 있는 친구이다. ViewModel 의 요청에 따라 데이터를 변경하는 역할을 수행한다. 
 
-![MVVM graph](https://thkim9373.github.io/assets/images/mvvm_image1.png){: .align-center}
-
-MVVM 모식도([출처](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm))
+{% include image.html url="https://thkim9373.github.io/assets/images/mvvm_image1.png" description="MVVM 모식도([출처](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm))" %}
