@@ -1,8 +1,6 @@
 ---
 title : "MVVM 개요"
 excerpt: "MVVM 에 대하여 알아보자"
-toc: true
-toc_sticky: true
 
 categories :
   - Android 
