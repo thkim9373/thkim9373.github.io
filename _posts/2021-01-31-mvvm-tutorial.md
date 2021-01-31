@@ -6,13 +6,13 @@ categories :
   - Android 
 tags : 
   - MVVM 
-last_modified_at: 2021-01-26
+last_modified_at: 2021-01-31
 ---
 
 ## 목표
 
 - MVVM 이란 무엇인지 학습한다.
-- MVVM 구조를 간단한 예제 코드로 구현한다.
+- 간단한 MVVM 구조를 예제 코드로 구현한다.
   
 ## MVVM 이란?
 
