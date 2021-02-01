@@ -45,3 +45,116 @@ View 에서 발생하는 액션에 따라 비즈니스 로직을 실행하여 Mo
 
 ![MVVM 모식도([출처](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm))](https://thkim9373.github.io/assets/images/mvvm_image1.png){: .align-center}
 *MVVM 모식도([출처](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/mvvm))*
+
+## 구현
+
++, - 버튼을 만들어서 숫자를 카운트하는 간단한 카운터를 만들어보자. 먼저 레이아웃을 구상하자. 
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/count"
+        app:layout_constraintEnd_toStartOf="@id/count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/count"
+        app:srcCompat="@drawable/ic_baseline_remove_24" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/count"
+        app:layout_constraintTop_toTopOf="@id/count"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+그리고 View 에 해당하는 activity 에 해당 레이아웃을 띄우도록 한다.  
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<MainViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setListener()
+        setObserver()
+    }
+
+    private fun setListener() {
+        binding.apply {
+            minus.setOnClickListener {
+                viewModel.minus()
+            }
+            plus.setOnClickListener {
+                viewModel.plus()
+            }
+        }
+    }
+
+    private fun setObserver() {
+        viewModel.apply {
+            numLiveData.observe(
+                this@MainActivity,
+                Observer {
+                    binding.count.text = it.toString()
+                }
+            )
+        }
+    }
+}
+```
+
+View model code 
+
+```kotlin
+class MainViewModel : ViewModel() {
+
+    private val numMutableLiveData = MutableLiveData<Int>().apply { value = 0 }
+    val numLiveData: LiveData<Int>
+        get() = numMutableLiveData
+
+    fun minus() {
+        val num: Int = numMutableLiveData.value ?: 0
+        numMutableLiveData.value = num - 1
+    }
+
+    fun plus() {
+        val num: Int = numMutableLiveData.value ?: 0
+        numMutableLiveData.value = num + 1
+    }
+}
+```
