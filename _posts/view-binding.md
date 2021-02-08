@@ -57,4 +57,58 @@ View binding 은 안드로이드에서 view 에 접근하는 방법 중 하나�
 - 동적 UI 컨텐츠를 구성할 수 있다.
 - Two-way data binding 을 지원한다.
 
-**결론적으로, View binding 과 Data binding 의 차이를 비교해보고 상황에 맞도록 사용하면 된다.**
+**결론적으로, View binding 과 Data binding 의 차이를 비교해보고 상황에 맞도록 사용하면 된다. ~~답정너~~**
+
+## 사용법
+
+### Setup
+
+앱의 build.gradle 에서 View binding 을 사용할 수 있도록 설정해주자. 
+
+```groovy
+// 안드로이드 스튜디오 4.0 이상 
+android {
+    buildFeatures {
+        viewBinding = true
+    }
+}
+```
+
+안드로이드 스튜디오 4.0 부터 param 의 위치가 buildFeatures 로 변경됐다. 그보다 미만 버전에서는 아래와 같이 설정하면 된다. 
+
+```groovy
+// 안드로이드 스튜디오 4.0 미만 
+android {
+    viewBinding {
+        enabled = true
+    }
+}
+```
+
+위와 같이 설정을 완료하면 레이아웃 파일에 해당하는 바인딩 클래스가 생성된다. 바인딩 클래스의 네이밍 규칙은 xml 의 이름을 upper camel case 로 변환한 뒤 Binding 이 붙는 형태이다. 
+
+> main_activity.xml → MainActivityBinding 
+first_fragment.xml → FirstFragmentBinding 
+item_content.xml → ItemContentBinding
+
+### Activity
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+				// 바인딩 클래스의 inflate 메서드를 호출하여 인스턴스 생성
+        binding = ActivityMainBinding.inflate(layoutInflater)
+				// 바인딩 인스턴스에서 getRoot 메서드를 호출하여 해당 뷰를 스트린에 띄움 
+        setContentView(binding.root)
+				
+				// 바인딩 클래스에 id 가 textView 인 Text view 에 다음과 같이 접근할 수 있다. 
+        binding.textView.text = "Hello View Binding!"
+    }
+}
+```
+
+### Fragment
