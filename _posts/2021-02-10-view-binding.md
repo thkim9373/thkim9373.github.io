@@ -17,7 +17,7 @@ last_modified_at: 2021-02-10
 
 View binding 은 안드로이드에서 view 에 접근하는 방법 중 하나다. View binding 을 제공하기 이전에 이미 Data binding 이란 기능을 지원하고 있었지만, 많은 개발자들이 data binding 의 모든 기능을 사용하지 않고, view 에 접근하기 위해서만 사용하는 것을 보고 안드로이드 스튜디오 3.6 버전에서 추가된 기능이다. View 에 접근하는 방법은 몇 가지가 있는데, 이를 도표로 정리하면 아래와 같다. 
 
-![View binding img1](https://github.com/thkim9373/thkim9373.github.io/blob/master/assets/images/view-binding/view-binding3.png)
+![View binding img1](https://thkim9373.github.io/assets/images/view-binding/view-binding3.png)
 
 해당 도표에 있는 3가지 측정 기준은 
 
