@@ -87,9 +87,9 @@ android {
 
 위와 같이 설정을 완료하면 레이아웃 파일에 해당하는 바인딩 클래스가 생성된다. 바인딩 클래스의 네이밍 규칙은 xml 의 이름을 upper camel case 로 변환한 뒤 Binding 이 붙는 형태이다. 
 
-> main_activity.xml → MainActivityBinding 
-first_fragment.xml → FirstFragmentBinding 
-item_content.xml → ItemContentBinding
+> main_activity.xml → MainActivityBinding  
+first_fragment.xml → FirstFragmentBinding  
+item_content.xml → ItemContentBinding 
 
 ### Activity
 
