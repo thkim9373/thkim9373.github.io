@@ -6,7 +6,7 @@ categories :
   - Android 
 tags : 
   - View Binding 
-last_modified_at: 2021-02-03
+last_modified_at: 2021-02-10
 ---
 ## 목표
 
@@ -17,7 +17,7 @@ last_modified_at: 2021-02-03
 
 View binding 은 안드로이드에서 view 에 접근하는 방법 중 하나다. View binding 을 제공하기 이전에 이미 Data binding 이란 기능을 지원하고 있었지만, 많은 개발자들이 data binding 의 모든 기능을 사용하지 않고, view 에 접근하기 위해서만 사용하는 것을 보고 안드로이드 스튜디오 3.6 버전에서 추가된 기능이다. View 에 접근하는 방법은 몇 가지가 있는데, 이를 도표로 정리하면 아래와 같다. 
 
-![View binding img1](https://github.com/thkim9373/thkim9373.github.io/blob/master/assets/images/view-binding/view-binding1.png)
+![View binding img1](https://github.com/thkim9373/thkim9373.github.io/blob/master/assets/images/view-binding/view-binding3.png)
 
 해당 도표에 있는 3가지 측정 기준은 
 
@@ -59,6 +59,13 @@ View binding 은 안드로이드에서 view 에 접근하는 방법 중 하나�
 
 **결론적으로, View binding 과 Data binding 의 차이를 비교해보고 상황에 맞도록 사용하면 된다. ~~답정너~~**
 
+### View Binding vs Data Binding
+
+간단하게 둘의 관계를 정리하면 Data binding = View binding + Binding data to views 이다. 
+
+- View Binding : 빌드 속도 우세, 앱 용량 크기가 상대적으로 작음, xml 에 layout 태그를 감싸줄 필요가 없어서 사용이 용이함, 데이터 바인딩 기능 사용 못함
+- Data Binding : 빌드 속도 열세, 앱 크기가 View binding 을 이용하는 것 보다 커짐, xml 의 최상단에 layout 태그로 감싸줘야함, 데이터 바인딩 기능을 이용한 동적 UI 설계 가능
+
 ## 사용법
 
 ### Setup
@@ -87,9 +94,9 @@ android {
 
 위와 같이 설정을 완료하면 레이아웃 파일에 해당하는 바인딩 클래스가 생성된다. 바인딩 클래스의 네이밍 규칙은 xml 의 이름을 upper camel case 로 변환한 뒤 Binding 이 붙는 형태이다. 
 
-> main_activity.xml → MainActivityBinding  
-first_fragment.xml → FirstFragmentBinding  
-item_content.xml → ItemContentBinding 
+> main_activity.xml → MainActivityBinding 
+first_fragment.xml → FirstFragmentBinding 
+item_content.xml → ItemContentBinding
 
 ### Activity
 
@@ -140,6 +147,11 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 }
+
 ```
 
-Fragment 는 View 보다 오래 존재할 수 있기 때문에 onDestroyView() 에서 바인딩 클래스 인스턴스의 레퍼런스를 null 로 정리해줘야 합니다. (안해주면 메모리릭 남. 님 앱 펑! ㅇㅇ) 그렇기 때문에 프래그먼트에서 뷰 바인딩을 사용할 때는 위와 같이 추가적인 코드가 들어가게 됩니다.
+프래그먼트에서 뷰 바인딩을 사용할 때, Fragment 는 View 보다 오래 존재하기 때문에 onDestroyView() 에서 바인딩 클래스 인스턴스의 레퍼런스를 null 로 정리해줘야 합니다. (안해주면 메모리릭 남. 님 앱 펑! ㅇㅇ) 그렇기 때문에 프래그먼트에서 뷰 바인딩을 사용할 때는 위와 같이 추가적인 코드가 들어가게 됩니다. 
+
+## 결론
+
+뷰에 접근하기 위해서는 View binding 과 Data binding 의 차이를 숙지하고, 상황에 맞는 방법을 사용하는 것이 좋으며, 속도와 간결함을 중시한다면 View binding 을 고려해보는 것이 좋습니다.
