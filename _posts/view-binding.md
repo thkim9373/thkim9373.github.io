@@ -112,3 +112,34 @@ class MainActivity : AppCompatActivity() {
 ```
 
 ### Fragment
+
+```kotlin
+class FirstFragment : Fragment() {
+
+    private var _binding: FragmentFirstBinding? = null
+
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.textView.text = "Hello View Binding!"
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
+```
+
+Fragment 는 View 보다 오래 존재할 수 있기 때문에 onDestroyView() 에서 바인딩 클래스 인스턴스의 레퍼런스를 null 로 정리해줘야 합니다. (안해주면 메모리릭 남. 님 앱 펑! ㅇㅇ) 그렇기 때문에 프래그먼트에서 뷰 바인딩을 사용할 때는 위와 같이 추가적인 코드가 들어가게 됩니다.
