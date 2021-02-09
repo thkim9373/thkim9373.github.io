@@ -107,12 +107,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-				// 바인딩 클래스의 inflate 메서드를 호출하여 인스턴스 생성
+        // 바인딩 클래스의 inflate 메서드를 호출하여 인스턴스 생성
         binding = ActivityMainBinding.inflate(layoutInflater)
-				// 바인딩 인스턴스에서 getRoot 메서드를 호출하여 해당 뷰를 스트린에 띄움 
+        // 바인딩 인스턴스에서 getRoot 메서드를 호출하여 해당 뷰를 스트린에 띄움 
         setContentView(binding.root)
 				
-				// 바인딩 클래스에 id 가 textView 인 Text view 에 다음과 같이 접근할 수 있다. 
+        // 바인딩 클래스에 id 가 textView 인 Text view 에 다음과 같이 접근할 수 있다. 
         binding.textView.text = "Hello View Binding!"
     }
 }
