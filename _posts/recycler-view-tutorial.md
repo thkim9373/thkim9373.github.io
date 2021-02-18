@@ -86,3 +86,22 @@ data class Item(
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+
+그리고 해당 뷰를 가지고 있을 뷰 홀더를 만든다. 뷰 홀더를 만들 때는 View 인스턴스를 생성자에 넘겨줘야 한다. 해당 포스팅에서는 뷰 바인딩을 사용하도록 하자. (아직 View Binding 사용법을 모른다고? 그럼 그것부터 보고 오자. 다 피가되고 살이 된다. [포스팅 보러가기](https://thkim9373.github.io/android/view-binding/))
+
+```kotlin
+class MyViewHolder(
+    private val binding: ItemBinding
+) : RecyclerView.ViewHolder(binding.root) {
+    fun setUi(item: Item) {
+        binding.apply {
+            title.text = item.title
+            description.text = item.description
+        }
+    }
+}
+```
+
+## Adapter
+
+어탭터는 데이터와
