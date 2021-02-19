@@ -93,7 +93,7 @@ data class Item(
 class MyViewHolder(
     private val binding: ItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun setUi(item: Item) {
+    fun setItem(item: Item) {
         binding.apply {
             title.text = item.title
             description.text = item.description
@@ -104,4 +104,39 @@ class MyViewHolder(
 
 ## Adapter
 
-어탭터는 데이터와
+어탭터는 데이터와 리사이클러 뷰를 연결해주는 역할을 한다. 너무 대충 말한 것 같은데... 구현할 수 있는 핵심적인 기능을 조금 더 자세히 말하면 아래와 같다. 
+
+- 데이터에 따라 뷰 타입을 지정하여 상황에 맞는 뷰 홀더를 생성할 수 있다.
+- 뷰 홀더가 바인드 될 때, 데이터에 맞는 UI 를 노출해 줄 수 있다.
+- 데이터가 변경되었을 때, 리사이클러 뷰를 갱신할 수 있다.
+
+어탭터에도 종류가 몇 있는데, 그 중 오늘 사용할 어탭터는 [List Adapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) 이다. 리스트 어댑터는 데이터가 변했을 때, 리사이클러 뷰의 갱신을 아주 편리하게 할 수 있도록 구현되어 있는 친구다. 전통적으로 쓰이던 RecyclerView.Adapter 를 사용할 시절에는 데이터가 변했을 때, 추가, 제거 및 갱신을 일일히 알려줘야 했었지만, 지금은 시절이 좋아져서 Diff.ItemCallback 만 잘 정리해놓으면 알아서 처리해준다. (시절 참 좋아졌네...) 이를 상속받아서 사용하면 되는데, 안드 스튜디오에서 List adatper 를 쓰려고 하면 아래 이미지와 같이 2개가 나온다. 저 중에 Recycler view 에 포함된 친구를 쓰면 된다. 저 아래에 있는건 List view 라고 하는 친구 짝궁인데, 저거 상속 받아놓고 안된다고 뭐라고 하지 말자. 현기증 난다. (진짜 있었던 일임) 
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/013fa498-a468-4a59-bcbc-b27c3c131f0e/_2021-02-19__12.20.05.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/013fa498-a468-4a59-bcbc-b27c3c131f0e/_2021-02-19__12.20.05.png)
+
+```kotlin
+class MyAdapter : ListAdapter<Item, MyViewHolder>(
+    object : DiffUtil.ItemCallback<Item>() {
+        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean =
+            oldItem.title == newItem.title &&
+                    oldItem.description == newItem.description
+    }
+) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
+        MyViewHolder(
+            ItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.setItem(getItem(position))
+    }
+}
+```
