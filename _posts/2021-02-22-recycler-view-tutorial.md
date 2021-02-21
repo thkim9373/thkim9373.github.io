@@ -121,11 +121,11 @@ class MyViewHolder(
 ```kotlin
 class MyAdapter : ListAdapter<Item, MyViewHolder>(
     object : DiffUtil.ItemCallback<Item>() {
-				// id 가 같으면 같은 아이템이다. 
+        // id 가 같으면 같은 아이템이다. 
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean =
             oldItem.id == newItem.id
 				
-				// title 과 description 이 모두 같으면 내용도 같다. 
+        // title 과 description 이 모두 같으면 내용도 같다. 
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean =
             oldItem.title == newItem.title &&
                     oldItem.description == newItem.description
@@ -133,7 +133,7 @@ class MyAdapter : ListAdapter<Item, MyViewHolder>(
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
         MyViewHolder(
-						// 이렇게 뷰 바인딩 객체를 생성하여 넘겨준다. 
+            // 이렇게 뷰 바인딩 객체를 생성하여 넘겨준다. 
             ItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -142,7 +142,7 @@ class MyAdapter : ListAdapter<Item, MyViewHolder>(
         )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-				// 뷰 홀더가 바인딩 될 때마다 해당 포지션에 맞는 아이템을 넘겨줘서 뷰를 갱신한다. 
+        // 뷰 홀더가 바인딩 될 때마다 해당 포지션에 맞는 아이템을 넘겨줘서 뷰를 갱신한다. 
         holder.setItem(getItem(position))
     }
 }
@@ -203,10 +203,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 		
-		// 리사이클러 뷰에 할당할 어댑터 
+    // 리사이클러 뷰에 할당할 어댑터 
     private val myAdapter = MyAdapter()
 
-		// 리사이클러 뷰에 할당할 리스트 1
+    // 리사이클러 뷰에 할당할 리스트 1
     private val list1 = listOf(
         Item(1, "Item 1", "Description 1",),
         Item(2, "Item 2", "Description 2",),
@@ -219,7 +219,7 @@ class MainActivity : AppCompatActivity() {
         Item(9, "Item 9", "Description 9",),
         Item(10, "Item 10", "Description 10",),
     )
-		// 22
+    // 22
     private val list2 = listOf(
         Item(0, "Odd List", "First Item!",),
         Item(1, "Item 1", "Description 1",),
@@ -292,7 +292,7 @@ class MyAdapter(
 ) : ListAdapter<Item, MyViewHolder>(
     ...
 ) {
-		// 이벤트를 전달해 줄 리스너를 정의한다. 
+    // 이벤트를 전달해 줄 리스너를 정의한다. 
     interface MyAdapterListener {
         fun onItemClick(position: Int)
         fun onItemLongClick(position: Int)
@@ -337,7 +337,7 @@ class MyViewHolder(
 
     ...
 		
-		// 리스너를 할당하는 메서드
+    // 리스너를 할당하는 메서드
     fun setListener(listener: MyAdapter.MyAdapterListener) {
         binding.container.apply {
             setOnClickListener {
@@ -364,12 +364,12 @@ class MyViewHolder(
 // 리스너를 추가하자 
 class MainActivity : AppCompatActivity(), MyAdapter.MyAdapterListener {
 		
-		// 어댑터를 생성할 때, 리스너를 넘겨주자. 
-		private val myAdapter = MyAdapter(this)
+    // 어댑터를 생성할 때, 리스너를 넘겨주자. 
+    private val myAdapter = MyAdapter(this)
 
-		...
+    ...
 
-		// 아이템을 클릭 및 롱클릭 하게되면 토스트를 보여주도록 구현해놓았다. 
+    // 아이템을 클릭 및 롱클릭 하게되면 토스트를 보여주도록 구현해놓았다. 
     override fun onItemClick(position: Int) {
         Toast.makeText(this, "$position click!", Toast.LENGTH_SHORT).show()
     }
