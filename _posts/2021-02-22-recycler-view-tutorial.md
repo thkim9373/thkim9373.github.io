@@ -20,7 +20,7 @@ last_modified_at: 2021-02-22
 리사이클러 뷰는 리스트 형태의 UI 를 가진 뷰다. 정말정말 많은 곳에서 유용하게 사용되는 컴포넌트이기에 안드로이드 개발을 막 시작한 사람이라면 개념을 확실히 익혀두는 것을 추천한다. 이름에 리사이클이 들어가는 이유는 리스트를 표현하는데 사용하는 뷰를 재사용하기 때문이다. 아래 그림을 보면서 이해해보자. 
 
 <p align="center">
-  <img width="50%" height="50%" src="https://thkim9373.github.io/assets/images/recycler-view/recycler-view3.png">
+  <img width="50%" height="50%" src="https://thkim9373.github.io/assets/images/recycler-view/recycler-view1.png">
 </p>
 
 위의 그림처럼 화면에 최대 6개의 아이템이 보일 수 있는 리스트가 있다고 가정해보자. (걸치면 6대 가능) 이 때, 유저가 스크롤을 계속해서 화면에 더 이상 노출되지 않는 뷰가 생긴다면 리사이클러 뷰는 이를 재사용하여 새로운 데이터에 맞게 갱신하여 보여줌으로써 메모리를 효율적으로 관리한다. 위의 그림에서는 데이터의 수가 몇 개가 됐던 단 6개의 뷰로 리스트 UI 를 보여줄 수 있다는 것이다. (눈속임 ㅇㅇ) 
@@ -30,7 +30,7 @@ last_modified_at: 2021-02-22
 리사이클러 뷰를 커스텀할 수 있는 범위는 아주 많지만, 이번 포스팅에서는 아주 기본적인 기능만 구현해보자. (애초에 심화 내용 보려는 사람은 이거 안볼듯...?) 우리가 이번 시간에 만들어볼 리사이클러 뷰는 아래와 같다. (버튼은 따로 쓸 곳이 있다.) 
 
 <p align="center">
-  <img width="50%" height="50%" src="https://thkim9373.github.io/assets/images/recycler-view/recycler-view4.png">
+  <img width="50%" height="50%" src="https://thkim9373.github.io/assets/images/recycler-view/recycler-view2.png">
 </p>
 
 2개의 텍스트 뷰에 각각 텍스트를 표시할 수 있고, 세로 방향으로 스크롤이 가능한 리사이클러 뷰다. 위와 같은 리사이클러 뷰를 구현하는데 필수적으로 필요한 것은 
@@ -274,6 +274,10 @@ class MainActivity : AppCompatActivity() {
 주석에 다 설명을 다 써놔서 적을 내용이 별로 없다. (코드가 간단하기도 하구) 아 하나 있구나! 
 
 리스트 어댑터를 사용할 때 리사이클러 뷰에 노출할 데이터를 변경하고 싶으면 어댑터 코드에서 살짝 등장한 submitList() 메서드를 사용하면 된다. 기본적인 애니메이션도 구현이 되어있어서 생각보다 꽤나 그럴싸하게 리사이클러 뷰가 갱신되는걸 볼 수 있다. 
+
+<p align="center">
+  <img width="50%" height="50%" src="https://thkim9373.github.io/assets/images/recycler-view/recycler-view3.gif">
+</p>
 
 여기까지 기본적인 리사이클러 뷰 구현이 끝났다. 이제 리사이클러 뷰에 이벤트(클릭 등)를 줬을 때, 처리하는 방법을 알아보자. 
 
