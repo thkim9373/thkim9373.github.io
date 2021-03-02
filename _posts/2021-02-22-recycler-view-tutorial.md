@@ -287,7 +287,7 @@ class MainActivity : AppCompatActivity() {
 
 ### Adapter
 
-이벤트를 전달할 리스너를 하나 만들고, 액티비티에서 어댑터를 생성할 때 받을 수 있도록 하자. 마지막으로 해당 리스너를 뷰 홀더가 바인딩 될 때 건네주자. 
+이벤트를 전달할 리스너를 하나 만들고, 액티비티에서 어댑터를 생성할 때 받을 수 있도록 하자. 마지막으로 해당 리스너를 뷰 홀더가 바인딩 될 때 건네주자.
 
 ```kotlin
 class MyAdapter(
@@ -302,16 +302,20 @@ class MyAdapter(
         fun onItemLongClick(position: Int)
     }
 
-    ...
+    // 뷰 홀더를 만들 때, 리스너를 할당한다. 	
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
+        MyViewHolder(
+            ItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
+            listener,
+        )
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.apply {
-            setItem(getItem(position))
-            // 여기서 홀더에 리스너를 전달해주자 
-            setListener(listener)
-        }
-    }
+		...
 }
+
 ```
 
 ### View Holder
@@ -332,17 +336,15 @@ class MyAdapter(
 
 해당 속성을 추가하면 조금 더 역동적이게 된다. ([간단하게 리플 이펙트 사용하는 법](https://thkim9373.github.io/android/tips/#%EA%B0%84%EB%8B%A8%ED%95%98%EA%B2%8C-ripple-%EC%9D%B4%ED%8E%99%ED%8A%B8-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)) 
 
-다음은 코드에 리스너를  수정하자. 
-
+다음은 코드를 수정하자. 
 ```kotlin
 class MyViewHolder(
     private val binding: ItemBinding,
+    listener: MyAdapter.MyAdapterListener,  // 생성할 때, 리스너를 받아온다. 
 ) : RecyclerView.ViewHolder(binding.root) {
-
-    ...
-		
-    // 리스너를 할당하는 메서드
-    fun setListener(listener: MyAdapter.MyAdapterListener) {
+    
+    // 초기화할 때, 리스너를 등록한다. 
+    init {
         binding.container.apply {
             setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
@@ -357,7 +359,10 @@ class MyViewHolder(
             }
         }
     }
+
+    ...
 }
+
 ```
 
 뷰 홀더는 리사이클러 뷰에서 본인의 위치를 adapterPosition 으로 가져올 수 있다. 뷰에 이벤트가 발생했을 때, 구현해 둔 리스너에 뷰 홀더의 포지션을 넘겨주도록 하자. 이 때 주의할 점은 반드시 RecyclerView.NO_POSITION 인지 체크한 후 사용해야 한다. RecyclerView.NO_POSITION 은 리사이클러 뷰가 갱신 중일 때 어댑터 포지션을 가져오면 리턴되는 값이다. 그러므로 해당 값이 아닐 때만 리스너를 트리거 시켜주도록 하자. 
