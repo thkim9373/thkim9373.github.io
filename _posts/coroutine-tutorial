@@ -8,3 +8,11 @@ tags :
   - Coroutine  
 last_modified_at: 2021-03-02
 ---
+
+[공식 가이드 링크](https://kotlinlang.org/docs/coroutines-basics.html#your-first-coroutine)
+
+## 목표
+
+- 코루틴의 기본적인 사용법을 코드를 보며 익힌다.
+
+## Hello, World!
