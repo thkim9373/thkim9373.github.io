@@ -3,7 +3,8 @@ title : "코루틴 뿌시기 1편 - 베이직"
 excerpt: "코루틴 가이드 중 베이직을 살펴보자"
 
 categories :
-  - Android 
+  - Kotlin 
+  - Coroutine  
 tags : 
   - Coroutine  
 last_modified_at: 2021-03-02
