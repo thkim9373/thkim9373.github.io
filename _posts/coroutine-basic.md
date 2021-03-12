@@ -9,7 +9,6 @@ tags :
   - Coroutine  
 last_modified_at: 2021-03-02
 ---
-
 ## 목표
 
 - 코루틴의 기본적인 사용법을 코드를 보며 익힌다.
@@ -21,15 +20,13 @@ last_modified_at: 2021-03-02
 ## Hello, World!
 
 ```kotlin
-import kotlinx.coroutines.*
-
 fun main() {
-    GlobalScope.launch {
-        delay(1000L)
-        println("World!")
-    }
-    println("Hello,")
-    Thread.sleep(2000L)
+    GlobalScope.launch{// 백그라운드에서 새로운 코루틴을 실행한다. 이때, 메인 스레드는 계속 동작한다.
+        delay(1000L) // non-blocking 하게 1초 동안 지연시킨다. (기본 시간단위는 ms 임)
+println("World!") // 1초 지연 후 출력
+}
+println("Hello,") // main thread continues while coroutine is delayed
+    Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
 }
 ```
 
