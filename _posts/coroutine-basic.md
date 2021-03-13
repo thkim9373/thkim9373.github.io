@@ -25,7 +25,7 @@ fun main() {
         delay(1000L) // non-blocking 하게 1초 동안 지연시킨다. (기본 시간단위는 ms 임)
 println("World!") // 1초 지연 후 출력
 }
-println("Hello,") // main thread continues while coroutine is delayed
+println("Hello,") // 코루틴이 딜레이 되는 동안 메인 스레드를 통해 해당 문구가 출력됨
     Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
 }
 ```
