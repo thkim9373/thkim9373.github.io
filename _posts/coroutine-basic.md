@@ -21,11 +21,11 @@ last_modified_at: 2021-03-02
 
 ```kotlin
 fun main() {
-    GlobalScope.launch{// 백그라운드에서 새로운 코루틴을 실행한다. 이때, 메인 스레드는 계속 동작한다.
+    GlobalScope.launch { // 백그라운드에서 새로운 코루틴을 실행한다. 이때, 메인 스레드는 계속 동작한다.
         delay(1000L) // non-blocking 하게 1초 동안 지연시킨다. (기본 시간단위는 ms 임)
-println("World!") // 1초 지연 후 출력
-}
-println("Hello,") // 코루틴이 딜레이 되는 동안 메인 스레드를 통해 해당 문구가 출력됨
+        println("World!") // 1초 지연 후 출력
+    }
+    println("Hello,") // 코루틴이 딜레이 되는 동안 메인 스레드를 통해 해당 문구가 출력됨
     Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
 }
 ```
