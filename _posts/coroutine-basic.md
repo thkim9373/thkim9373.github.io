@@ -26,7 +26,7 @@ fun main() {
         println("World!") // 1초 지연 후 출력
     }
     println("Hello,") // 코루틴이 딜레이 되는 동안 메인 스레드를 통해 해당 문구가 출력됨
-    Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
+    Thread.sleep(2000L) // 메인 스레드를 2초간 멈춰서 JVM 이 종료되는 것을 막는다. 
 }
 ```
 
