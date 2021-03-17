@@ -30,4 +30,4 @@ fun main() {
 }
 ```
 
-위 예제는 main 함수에서 GlobalScope.launch { } 블럭을 생성한 후, Hello, World! 를 출력하는 코드이다.
+위 예제는 main 함수에서 GlobalScope.launch { } 블럭을 생성한 후, Hello, World! 를 출력하는 코드이다. 위의 코드가 실행되는 순서는 다음과 같다. 
