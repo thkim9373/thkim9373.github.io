@@ -31,3 +31,7 @@ fun main() {
 ```
 
 위 예제는 main 함수에서 GlobalScope.launch { } 블럭을 생성한 후, Hello, World! 를 출력하는 코드이다. 위의 코드가 실행되는 순서는 다음과 같다. 
+
+1. main() 함수가 메인 스레드에서 실행 시작 
+2. GlobalScope 코루틴 블럭이 생성되어 백그라운드에서 실행 시작 
+3.
